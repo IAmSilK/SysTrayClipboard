@@ -1,0 +1,49 @@
+﻿<mah:MetroWindow x:Class="SysTrayClipboard.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:SysTrayClipboard"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance local:MainWindow}"
+    Title="System Tray Clipboard"
+    Icon="Resources/MainIcon.ico"
+    Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid VerticalAlignment="Top" Height="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="EntryTitle" Grid.Column="0"/>
+                <Button Grid.Column="2" Content="Add Entry" Click="AddEntry_Click"/>
+            </Grid>
+            <ItemsControl VerticalAlignment="Stretch" Margin="0,32,0,0"
+                          ItemsSource="{Binding Entries}">
+                <!--
+                <Grid Margin="0,0,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Test"/>
+                    <Button Grid.Column="2" Content="Remove Entry"/>
+                </Grid>
+                -->
+            </ItemsControl>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Label VerticalAlignment="Top" Content="{Binding SelectedEntry.Title}"/>
+            <TextBox Text="{Binding SelectedEntry.Content, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" Margin="0,31,0,0"/>
+        </Grid>
+    </Grid>
+</mah:MetroWindow>
